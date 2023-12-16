@@ -1,3 +1,6 @@
+<?php
+require_once("../../app/bootstrap.php");
+?>
 <!doctype html>
 <html lang="en">
 <head>

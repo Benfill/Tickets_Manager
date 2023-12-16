@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+$url = "http://localhost/benfillous-anass_tickets_manager/";
 class Database {
     private $host = "localhost";
     private $user = "root";

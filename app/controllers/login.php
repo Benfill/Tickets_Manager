@@ -9,8 +9,8 @@ if (isset($_POST["submit"])) {
     try {
         $user = new user($conn);
         $userChecker = $user->login($email, $password);
-        header("Location: ../../public/index.php?login=success");
+        header("Location: " . $url . "Public/index.php?login=success");
     } catch(Exception $e) {
-        header("Location: ../../public/pages/login.php?error=" . $e->getMessage());
+        header("Location: " . $url . "Public/pages/login.php?error=" . $e->getMessage());
     }
 }

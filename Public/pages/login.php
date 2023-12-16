@@ -1,3 +1,11 @@
+<?php
+require_once "../../app/config/config.php";
+
+if(isset($_SESSION["log"])) {
+    header("Location: " . $url . "public/");
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>

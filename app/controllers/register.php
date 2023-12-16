@@ -12,8 +12,8 @@ if (isset($_POST["submit"])) {
     try {
         $user = new user($conn);
         $userChecker = $user->register($username, $email, $password, $picture);
-        header("Location: ../../public/pages/login.php?register=success");
+        header("Location: " . $url . "public/pages/login.php?register=success");
     } catch(Exception $e) {
-        header("Location: ../../public/pages/login.php?error=" . $e->getMessage());
+        header("Location: " . $url . "public/pages/login.php?error=" . $e->getMessage());
     }
 }
