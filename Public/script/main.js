@@ -2,7 +2,8 @@ const asideItems = document.querySelectorAll(".aside-item");
 const planMain = document.querySelector(".plan");
 const tickets = document.querySelector(".tickets");
 const tags = document.querySelector(".tags");
-console.log("test");
+const ticketForm = document.querySelector(".ticket-form");
+const createTicketBtn = document.querySelector(".create-btn");
 
 asideItems[0].classList.add("bg-yellow-200", "text-yellow-900");
 
@@ -13,6 +14,8 @@ asideItems.forEach((elm) => {
             asideItems[i].classList.remove("text-yellow-900");
         }
         elm.classList.add("bg-yellow-200", "text-yellow-900");
+        ticketForm.classList.add("hidden");
+        console.log(ticketForm.classList);
 
         if (elm === asideItems[0]) {
             planMain.style.display = "flex";
@@ -22,7 +25,6 @@ asideItems.forEach((elm) => {
             tickets.style.display = "flex";
             planMain.style.display = "none";
             tags.style.display = "none";
-            ticketForm.classList.add("hidden");
         } else {
             tags.style.display = "flex";
             planMain.style.display = "none";
@@ -42,9 +44,6 @@ function showDropdownOptions(options, arrowUP, arrowDown) {
     document.getElementById(arrowDown).classList.toggle("hidden");
 }
 
-const ticketForm = document.querySelector(".ticket-form");
-const createTicketBtn = document.querySelector(".create-btn");
-
 createTicketBtn.addEventListener("click", () => {
     ticketForm.classList.remove("hidden");
     tickets.style.display = "none";
@@ -55,5 +54,4 @@ const cancel = document.querySelector(".cancel");
 cancel.addEventListener("click", ()=>{
     ticketForm.classList.add("hidden");
     tickets.style.display = "flex";
-    console.log("test");
 });
