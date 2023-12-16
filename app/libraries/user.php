@@ -27,11 +27,11 @@ class user {
                 $_SESSION["log"] = true;
                 $_SESSION["user_id"] = $row["user_id"];
             } else {
-                throw new Exception("Password is Not Correct");
+                throw new Exception("password_is_not_correct");
                 return false;
             }
         } else {
-            throw new Exception("User Not Found");
+            throw new Exception("user_not_found");
             return false;
         }
         return true;
@@ -46,7 +46,7 @@ class user {
             mysqli_stmt_bind_param($stmt, "ssss", $username, $email, $password, $picture);
             mysqli_stmt_execute($stmt);
         } else {
-            throw new Exception("User Exists");
+            throw new Exception("user_exists");
             return false;
         }
         return true;
