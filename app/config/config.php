@@ -24,11 +24,11 @@ class Database {
                 FOREIGN KEY (user_id) REFERENCES user(user_id))";
         $this->conn->query($sql);
 
-       $sql = "CREATE TABLE IF NOT EXISTS ticket (ticket_id INT PRIMARY KEY AUTO_INCREMENT, subject TEXT UNIQUE, description TEXT, assignment TEXT, status TEXT, priority text, date INT, deadline INT, is_deleted TINYINT(1) DEFAULT 0,
-            user_id INT, tag_id INT, comment_id INT,
+       $sql = "CREATE TABLE IF NOT EXISTS ticket (ticket_id INT PRIMARY KEY AUTO_INCREMENT, subject TEXT, description TEXT, assignment INT, status TEXT, priority text, date INT, deadline INT, is_deleted TINYINT(1) DEFAULT 0,
+            user_id INT, tag_id INT,
+            FOREIGN KEY (assignment) REFERENCES user(user_id),
             FOREIGN KEY (user_id) REFERENCES user(user_id),
-            FOREIGN KEY (tag_id) REFERENCES tag(tag_id),
-            FOREIGN KEY (comment_id) REFERENCES comment(comment_id))";
+            FOREIGN KEY (tag_id) REFERENCES tag(tag_id))";
         $this->conn->query($sql);
 
         $sql = "INSERT INTO tag (tag) VALUES 
