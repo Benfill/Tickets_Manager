@@ -1,14 +1,5 @@
 <?php
 class ticket {
-    private $subject;
-    private $deadline;
-    private $assignment;
-    private $tag;
-    private $priority;
-    private $status;
-    private $description;
-
-
     function createTicket ($subject, $deadline, $assignment, $tag, $priority, $status, $description, $date, $conn) {
         require_once "../models/ticketModel.php";
         $ticketModel = new ticketModel();
