@@ -26,6 +26,7 @@ class user {
             if (password_verify($password, $row["password"])) {
                 $_SESSION["log"] = true;
                 $_SESSION["user_id"] = $row["user_id"];
+                $_SESSION["email"] = $row["email"];
             } else {
                 throw new Exception("password_is_not_correct");
                 return false;
