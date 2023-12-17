@@ -1,5 +1,6 @@
 <?php
 require_once("../../app/bootstrap.php");
+require_once("../../app/controllers/ticket_display.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -15,6 +16,7 @@ require_once("../../app/bootstrap.php");
     <title>Ticket Manager</title>
 </head>
 <body class="p-8">
+<div>
 <a href="../index.php" class="inline-flex items-center px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-medium rounded-md">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
@@ -22,83 +24,61 @@ require_once("../../app/bootstrap.php");
 
     Back Home
 </a>
+
+    <div class="bg-white p-4 flex justify-center items-center flex-wrap">
+    <?php if($ticketData["priority"] == "Medium Priority") {?>
+  <span class="inline-flex items-center m-2 px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded-full text-sm font-semibold text-gray-600">
+	<svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
+	<span class="ml-1">
+	  <?php echo $ticketData["priority"] ?>
+	</span>
+  </span>
+        <?php } else if($ticketData["priority"] == "Urgent") {?>
+        <span class="inline-flex items-center m-2 px-3 py-1 bg-red-200 hover:bg-red-300 rounded-full text-sm font-semibold text-red-600">
+	<svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
+	<span class="ml-1">
+	  <?php echo $ticketData["priority"] ?>
+	</span>
+  </span>
+    <?php } else if($ticketData["priority"] == "High Priority") {?>
+        <span class="inline-flex items-center m-2 px-3 py-1 bg-yellow-200 hover:bg-yellow-300 rounded-full text-sm font-semibold text-yellow-600">
+	<svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
+	<span class="ml-1">
+        <?php echo $ticketData["priority"] ?>
+	</span>
+  </span>
+    <?php } else if($ticketData["priority"] == "Low Priority") {?>
+        <span class="inline-flex items-center m-2 px-3 py-1 bg-blue-200 hover:bg-blue-300 rounded-full text-sm font-semibold text-blue-600">
+	<svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
+	<span class="ml-1">
+        <?php echo $ticketData["priority"] ?>
+	</span>
+  </span>
+        <?php } ?>
+    </div>
+</div>
 <main class="mt-10 p-8">
     <div class="mb-4 md:mb-0 w-full mx-auto relative">
         <div class="px-4 lg:px-0">
             <h2 class="text-4xl font-semibold text-gray-800 leading-tight">
-                Pellentesque a consectetur velit, ac molestie ipsum. Donec sodales, massa et auctor.
+                <?php echo $ticketData["subject"] ?>
             </h2>
             <a
                 href="#"
                 class="py-2 text-green-700 inline-flex items-center justify-center mb-2"
             >
-                Cryptocurrency
+                <?php echo $ticketData["tag"] ?>
             </a>
+            <p class="py-2 text-green-700 items-center justify-center mb-2">
+                by <?php echo $ticketData["username"] ?>
+            </p>
         </div>
     </div>
 
     <div class="flex flex-col lg:flex-row lg:space-x-12">
 
         <div class="px-4 lg:px-0 mt-12 text-gray-700 text-lg leading-relaxed w-full lg:w-3/4">
-            <p class="pb-6">Advantage old had otherwise sincerity dependent additions. It in adapted natural hastily is
-                justice. Six draw
-                you him full not mean evil. Prepare garrets it expense windows shewing do an. She projection advantages
-                resolution son indulgence. Part sure on no long life am at ever. In songs above he as drawn to. Gay was
-                outlived peculiar rendered led six.</p>
-
-            <p class="pb-6">Difficulty on insensible reasonable in. From as went he they. Preference themselves me as
-                thoroughly
-                partiality considered on in estimating. Middletons acceptance discovered projecting so is so or. In or
-                attachment inquietude remarkably comparison at an. Is surrounded prosperous stimulated am me discretion
-                expression. But truth being state can she china widow. Occasional preference fat remarkably now projecting
-                uncommonly dissimilar. Sentiments projection particular companions interested do at my delightful. Listening
-                newspaper in advantage frankness to concluded unwilling.</p>
-
-            <p class="pb-6">Adieus except say barton put feebly favour him. Entreaties unpleasant sufficient few pianoforte
-                discovered
-                uncommonly ask. Morning cousins amongst in mr weather do neither. Warmth object matter course active law
-                spring six. Pursuit showing tedious unknown winding see had man add. And park eyes too more him. Simple excuse
-                active had son wholly coming number add. Though all excuse ladies rather regard assure yet. If feelings so
-                prospect no as raptures quitting.</p>
-
-            <div class="border-l-4 border-gray-500 pl-4 mb-6 italic rounded">
-                Sportsman do offending supported extremity breakfast by listening. Decisively advantages nor
-                expression
-                unpleasing she led met. Estate was tended ten boy nearer seemed. As so seeing latter he should thirty whence.
-                Steepest speaking up attended it as. Made neat an on be gave show snug tore.
-            </div>
-
-            <p class="pb-6">Exquisite cordially mr happiness of neglected distrusts. Boisterous impossible unaffected he me
-                everything.
-                Is fine loud deal an rent open give. Find upon and sent spot song son eyes. Do endeavor he differed carriage
-                is learning my graceful. Feel plan know is he like on pure. See burst found sir met think hopes are marry
-                among. Delightful remarkably new assistance saw literature mrs favourable.</p>
-
-            <h2 class="text-2xl text-gray-800 font-semibold mb-4 mt-4">Uneasy barton seeing remark happen his has</h2>
-
-            <p class="pb-6">Guest it he tears aware as. Make my no cold of need. He been past in by my hard. Warmly thrown
-                oh he common
-                future. Otherwise concealed favourite frankness on be at dashwoods defective at. Sympathize interested
-                simplicity at do projecting increasing terminated. As edward settle limits at in.</p>
-
-            <p class="pb-6">Dashwood contempt on mr unlocked resolved provided of of. Stanhill wondered it it welcomed oh.
-                Hundred no
-                prudent he however smiling at an offence. If earnestly extremity he he propriety something admitting convinced
-                ye. Pleasant in to although as if differed horrible. Mirth his quick its set front enjoy hoped had there. Who
-                connection imprudence middletons too but increasing celebrated principles joy. Herself too improve gay winding
-                ask expense are compact. New all paid few hard pure she.</p>
-
-            <p class="pb-6">Breakfast agreeable incommode departure it an. By ignorant at on wondered relation. Enough at
-                tastes really
-                so cousin am of. Extensive therefore supported by extremity of contented. Is pursuit compact demesne invited
-                elderly be. View him she roof tell her case has sigh. Moreover is possible he admitted sociable concerns. By
-                in cold no less been sent hard hill.</p>
-
-            <p class="pb-6">Detract yet delight written farther his general. If in so bred at dare rose lose good. Feel and
-                make two real
-                miss use easy. Celebrated delightful an especially increasing instrument am. Indulgence contrasted sufficient
-                to unpleasant in in insensible favourable. Latter remark hunted enough vulgar say man. Sitting hearted on it
-                without me.</p>
+            <p class="pb-6"><?php echo $ticketData["description"] ?></p>
 
         </div>
 
