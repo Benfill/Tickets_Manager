@@ -17,9 +17,9 @@ require_once("../app/bootstrap.php");
 <!-- partial:index.partial.html -->
 <body class="relative bg-yellow-50 overflow-hidden max-h-screen">
   <header class="fixed right-0 top-0 left-60 bg-yellow-50 py-3 px-4 h-16">
-    <div class="max-w-4xl mx-auto">
+      <div class="max-w-4xl mx-auto">
       <div class="flex items-center justify-center">
-        <div class="text-lg font-bold">Welecome</div>
+        <div class="text-lg font-bold">Welecome <?php echo $userData["username"]; ?></div>
       </div>
     </div>
   </header>
@@ -192,11 +192,12 @@ require_once("../app/bootstrap.php");
                           <svg id="arrow-down-creator" class="hidden w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
                           <svg id="arrow-up-creator" class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" /></svg>
                       </button>
-                      <section id="options-creator" class="hidden absolute w-48 py-2 mt-2 bg-white rounded-lg shadow-xl" multiple="">
-                          <option class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Item 1</option>
-                          <option class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Item 2</option>
-                          <option class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Item 3</option>
-                      </section>
+                      <select name="creator" id="options-creator" class="hidden absolute w-48 py-2 mt-2 bg-white rounded-lg shadow-xl" multiple="">
+                          <?php foreach ($usersData as $user) {
+                              ?>
+                              <option value="<?php echo $user['user_id'] ?>" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><?php echo $user['username'] ?></option>
+                          <?php } ?>
+                      </select>
                   </div>
                   <!-- Sort by assignment -->
                   <div class="relative z-10 flex-none p-2">
@@ -206,10 +207,11 @@ require_once("../app/bootstrap.php");
                           <svg id="arrow-down-assignment" class="hidden w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
                           <svg id="arrow-up-assignment" class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" /></svg>
                       </button>
-                      <select id="options-assignment" class="hidden absolute w-48 py-2 mt-2 bg-white rounded-lg shadow-xl" multiple>
-                          <option class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Item 1</option>
-                          <option class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Item 2</option>
-                          <option class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Item 3</option>
+                      <select name="assignment" id="options-assignment" class="hidden absolute w-48 py-2 mt-2 bg-white rounded-lg shadow-xl" multiple>
+                          <?php foreach ($usersData as $user) {
+                          ?>
+                          <option value="<?php echo $user['user_id'] ?>" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><?php echo $user['username'] ?></option>
+                          <?php } ?>
                       </select>
                   </div>
               </div>
@@ -330,7 +332,7 @@ require_once("../app/bootstrap.php");
                   </div>
                   <hr class="mt-6 border-b-1 border-blueGray-300">
                   <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                      <form>
+                      <form method="post" action="../app/controllers/ticket_form.php">
                           <div class="flex flex-wrap">
                               <div class="w-full lg:w-6/12 px-4">
                                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
@@ -338,7 +340,7 @@ require_once("../app/bootstrap.php");
                                   </label>
                                   <div class="relative w-full mb-3 flex">
                                       <label class="ml-2">
-                                          <input type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" rows="4">
+                                          <input type="text" name="subject" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" rows="4">
                                       </label>
                                   </div>
                               </div>
@@ -347,7 +349,7 @@ require_once("../app/bootstrap.php");
                                   <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                                       Deadline
                                   </label>
-                                  <input datepicker datepicker-autohide type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                                  <input datepicker datepicker-autohide name="deadline" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
                               </div>
 
                           </div>
@@ -360,35 +362,32 @@ require_once("../app/bootstrap.php");
                                           Assignment
                                       </label>
                                       <div onclick="showDropdownOptions('options-assignment-form', 'arrow-up-assignment-form', 'arrow-down-assignment-form')" class="flex flex-row justify-between w-48 px-2 py-2 text-gray-700 bg-white border-2 border-white rounded-md shadow focus:outline-none focus:border-blue-600">
-                                          <span class="select-none">Sort by creator</span>
-
+                                          <span class="select-none">Chose assignment</span>
                                           <svg id="arrow-down-assignment-form" class="hidden w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
                                           <svg id="arrow-up-assignment-form" class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" /></svg>
                                       </div>
-                                      <section id="options-assignment-form" class="hidden absolute z-10 w-48 py-2 mt-2 bg-white rounded-lg shadow-xl" multiple="">
-                                          <option class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Item 1</option>
-                                          <option class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Item 2</option>
-                                          <option class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Item 3</option>
-                                      </section>
+                                      <select name="assignment" id="options-assignment-form" class="hidden absolute z-10 w-48 py-2 mt-2 bg-white rounded-lg shadow-xl" multiple>
+                                          <?php foreach ($usersData as $user) { ?>
+                                              <option value="<?php echo $user['user_id'] ?>" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><?php echo $user['username'] ?></option>
+                                          <?php } ?>
+                                      </select>
                                   </div>
                               </div>
                               <div class="w-full lg:w-6/12 px-4">
                                   <div class="relative w-full mb-3">
-                                      <label for="options-tags" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
-                                          tags
+                                      <label for="options-assignment" class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                          Tags
                                       </label>
-                                      <div onclick="showDropdownOptions('options-tags-form', 'arrow-up-tags-form', 'arrow-down-tags-form')" class="flex flex-row justify-between w-48 px-2 py-2 text-gray-700 bg-white border-2 border-white rounded-md shadow focus:outline-none focus:border-blue-600">
-                                          <span class="select-none">Sort by creator</span>
-
-                                          <svg id="arrow-down-tags-form" class="hidden w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                                          <svg id="arrow-up-tags-form" class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" /></svg>
+                                      <div onclick="showDropdownOptions('options-tag-form', 'arrow-up-tag-form', 'arrow-down-tag-form')" class="flex flex-row justify-between w-48 px-2 py-2 text-gray-700 bg-white border-2 border-white rounded-md shadow focus:outline-none focus:border-blue-600">
+                                          <span class="select-none">Chose tag</span>
+                                          <svg id="arrow-down-tag-form" class="hidden w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                                          <svg id="arrow-up-tag-form" class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" /></svg>
                                       </div>
-                                      <section id="options-tags-form" class="hidden absolute z-10 w-48 py-2 mt-2 bg-white rounded-lg shadow-xl">
-                                          <option class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Item 1</option>
-                                          <option class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Item 2</option>
-                                          <option class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Item 3</option>
-                                      </section>
-
+                                      <select name="assignment" id="options-tag-form" class="hidden absolute z-10 w-48 py-2 mt-2 bg-white rounded-lg shadow-xl" multiple>
+                                          <?php foreach ($tagData as $tag) { ?>
+                                              <option value="<?php echo $tag["tag_id"] ?>" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><?php echo $tag["tag"] ?></option>
+                                          <?php }?>
+                                      </select>
                                   </div>
                               </div>
                               <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
@@ -397,17 +396,17 @@ require_once("../app/bootstrap.php");
                               <div class="flex-col justify-center container mx-auto mt-3">
                                   <div class="grid grid-cols-3 gap-4">
                                       <div>
-                                          <input type="radio" id="todo" name="priority" value="Todo" class="form-radio text-blue-500">
+                                          <input type="radio" id="todo" name="priority" value="normal" class="form-radio text-blue-500">
                                           <label for="todo" class="ml-2 text-gray-700">Normal</label>
                                       </div>
 
                                       <div>
-                                          <input type="radio" id="doing" name="priority" value="Doing" class="form-radio text-green-500">
-                                          <label for="doing" class="ml-2 text-gray-700">Medium</label>
+                                          <input type="radio" id="doing" name="priority" value="important" class="form-radio text-green-500">
+                                          <label for="doing" class="ml-2 text-gray-700">Important</label>
                                       </div>
 
                                       <div>
-                                          <input type="radio" id="done" name="priority" value="Done" class="form-radio text-yellow-500">
+                                          <input type="radio" id="done" name="priori    ty" value="urgent" class="form-radio text-yellow-500">
                                           <label for="done" class="ml-2 text-gray-700">Urgent</label>
                                       </div>
                                   </div>
@@ -446,7 +445,7 @@ require_once("../app/bootstrap.php");
                                           Description
                                       </label>
                                       <label>
-                                          <textarea type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" rows="4"> A beautiful UI Kit and Admin for JavaScript &amp; Tailwind CSS. It is Freeand Open Source.</textarea>
+                                          <textarea name="description" placeholder="Describe Your Issue" type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" rows="4"></textarea>
                                       </label>
                                   </div>
                               </div>
@@ -455,7 +454,7 @@ require_once("../app/bootstrap.php");
                               <div class="cancel border-2 border-red-600 rounded-lg px-3 py-2 text-gray-400 w-20 cursor-pointer hover:bg-red-600 hover:text-red-200">
                                   Cancel
                               </div>
-                              <button class="border-2 border-yellow-600 rounded-lg px-3 py-2 text-yellow-400 cursor-pointer hover:bg-yellow-600 hover:text-yellow-200">
+                              <button name="save" class="border-2 border-yellow-600 rounded-lg px-3 py-2 text-yellow-400 cursor-pointer hover:bg-yellow-600 hover:text-yellow-200">
                                   Save changes
                               </button>
                           </div>
