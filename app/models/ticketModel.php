@@ -26,13 +26,12 @@ class ticketModel
 
     function insertTicket($conn)
     {
-        $sql = "INSERT INTO ticket (user_id, subject, tag_id, priority, status, description, deadline, date) VALUES (?, ?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO ticket (user_id, subject, tag_id, priority, status, description, deadline, date) VALUES (?,?,?,?,?,?,?,?)";
         $stmt = mysqli_stmt_init($conn);
         mysqli_stmt_prepare($stmt, $sql);
         mysqli_stmt_bind_param($stmt, "isisssii", $this->creator, $this->subject, $this->tag, $this->priority, $this->status, $this->description, $this->deadline, $this->date);
         mysqli_stmt_execute($stmt);
         $ticket_id = mysqli_insert_id($conn);
-
 
         return $ticket_id;
     }
