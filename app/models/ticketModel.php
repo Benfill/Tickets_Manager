@@ -40,4 +40,19 @@ class ticketModel {
         $res = mysqli_stmt_get_result($stmt);
         return mysqli_fetch_assoc($res);
     }
+
+    function displayComments($conn) {
+        $sql = "SELECT * FROM comment WHERE ticket_id=?";
+        $stmt = mysqli_stmt_init($conn);
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $this->ticket_id);
+        mysqli_stmt_execute($stmt);
+        $res = mysqli_stmt_get_result($stmt);
+
+        $comments = array();
+        while ($row = mysqli_fetch_assoc($res)) {
+            $comments[] = $row;
+        }
+        return $comments;
+    }
 }
