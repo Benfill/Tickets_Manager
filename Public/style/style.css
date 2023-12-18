@@ -18,3 +18,8 @@
 textarea:valid {
     background-color: palegreen;
 }
+
+.selected-option {
+    background-color: #indigo; /* Set your desired background color for selected options */
+    color: #fff; /* Set your desired text color for selected options */
+}
