@@ -13,7 +13,12 @@ class ticket {
         $ticketModel->__set("description", $description);
         $ticketModel->__set("deadline", $deadline);
         $ticketModel->__set("date", $date);
-        return $ticketModel->insertTicket($conn);
+
+        $ticket_id = $ticketModel->insertTicket($conn);
+        foreach ($assignment as $assignedTo) {
+            $ticketModel->insertAssignment($conn, $ticket_id, $assignedTo);
+        }
+        return $ticket_id;
     }
 
     function displayTicket($conn, $ticket_id) {
@@ -30,6 +35,17 @@ class ticket {
 
         $ticketModel->__set("ticket_id", $ticket_id);
         return $ticketModel->displayComments($conn);
+    }
+
+    function insertComment($conn, $comment, $user_id, $ticket_id) {
+        require_once "../../app/models/ticketModel.php";
+        $ticketModel = new ticketModel();
+
+        $ticketModel->__set("ticket_id", $ticket_id);
+        $ticketModel->__set("comment", $comment);
+        $ticketModel->__set("comment_user_id", $user_id);
+
+        $ticketModel->createComment($conn);
     }
 
 }

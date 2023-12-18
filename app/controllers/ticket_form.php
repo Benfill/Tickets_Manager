@@ -12,11 +12,16 @@ if (isset($_POST["save"])) {
     $date = date("U");
     $creator = $_SESSION["user_id"];
 
+    header("Content-Type: text/plain");
+
+    foreach ($_POST['assignment'] as $selectedOption)
+        echo $selectedOption."\n";
+
     $deadline = filter_input(INPUT_POST, "deadline", FILTER_SANITIZE_NUMBER_INT);
     $deadlineObject = DateTime::createFromFormat('dmY', $deadline);
     $deadline = $deadlineObject->getTimestamp();
-    $ticket = new ticket;
-    $ticket_id = $ticket->createTicket($creator, $subject, $deadline, $assignment, $tag, $priority, $status, $description, $date, $conn);
+    //$ticket = new ticket;
+    //$ticket_id = $ticket->createTicket($creator, $subject, $deadline, $assignment, $tag, $priority, $status, $description, $date, $conn);
 
-    header("Location: " . $url . "public/pages/ticket.php?ticket_id=". $ticket_id);
+    //header("Location: " . $url . "public/pages/ticket.php?ticket_id=". $ticket_id);
 }
