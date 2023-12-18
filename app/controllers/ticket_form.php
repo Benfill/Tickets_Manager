@@ -7,7 +7,7 @@ if (isset($_POST["save"])) {
 
     $subject = filter_input(INPUT_POST, "subject", FILTER_SANITIZE_SPECIAL_CHARS);
     $assignment = $_POST['assignment'];
-    $tag = filter_input(INPUT_POST, "tag", FILTER_SANITIZE_SPECIAL_CHARS);
+    $tag = $_POST['tag'];
     $priority = filter_input(INPUT_POST, "priority", FILTER_SANITIZE_SPECIAL_CHARS);
     $status = filter_input(INPUT_POST, "status", FILTER_SANITIZE_SPECIAL_CHARS);
     $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_SPECIAL_CHARS);

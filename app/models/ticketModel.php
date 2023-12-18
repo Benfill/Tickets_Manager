@@ -45,7 +45,6 @@ class ticketModel
     function displayOneTicket($conn)
     {
         $sql = "SELECT ticket.*, tag.tag, user.username FROM ticket
-                INNER JOIN tag ON ticket.tag_id=tag.tag_id
                 INNER JOIN user ON ticket.user_id=user.user_id
                 WHERE ticket_id=? AND is_deleted=0";
         $stmt = mysqli_stmt_init($conn);

@@ -1,8 +1,10 @@
 <?php
 class ticket {
-    function createTicket ($creator, $subject, $deadline, $assignment, $tag, $priority, $status, $description, $date, $conn) {
+    function createTicket ($creator, $subject, $deadline, $assignment, $tags, $priority, $status, $description, $date, $conn) {
         require_once "../models/ticketModel.php";
+        require_once "../models/tagModel.php";
         $ticketModel = new ticketModel();
+        $tagModel = new tagModel();
 
         $ticketModel->__set("subject", $subject);
         $ticketModel->__set("creator", $creator);
@@ -17,6 +19,9 @@ class ticket {
         $ticket_id = $ticketModel->insertTicket($conn);
         foreach ($assignment as $assignedTo) {
             $ticketModel->insertAssignment($conn, $ticket_id, $assignedTo);
+        }
+        foreach ($tags as $tag) {
+            $tagModel->insertTag($conn, $ticket_id, $tag);
         }
         return $ticket_id;
     }
