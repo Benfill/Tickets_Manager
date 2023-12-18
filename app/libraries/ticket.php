@@ -24,5 +24,12 @@ class ticket {
         return $ticketModel->displayOneTicket($conn);
     }
 
+    function displayComments($conn, $ticket_id) {
+        require_once "../../app/models/ticketModel.php";
+        $ticketModel = new ticketModel();
+
+        $ticketModel->__set("ticket_id", $ticket_id);
+        return $ticketModel->displayComments($conn);
+    }
 
 }
