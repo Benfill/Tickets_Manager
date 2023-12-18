@@ -55,3 +55,46 @@ cancel.addEventListener("click", ()=>{
     ticketForm.classList.add("hidden");
     tickets.style.display = "flex";
 });
+
+
+var changed;
+$('select[multiple="multiple"]').change(function(e) {
+    var select = $(this);
+    var list = select.data('prevstate');
+    var val = select.val();
+    if (list == null) {
+        list = val;
+    } else if (val.length == 1) {
+        val = val.pop();
+        var pos = list.indexOf(val);
+        if (pos == -1)
+            list.push(val);
+        else
+            list.splice(pos, 1);
+    } else {
+        list = val;
+    }
+    select.val(list);
+    select.data('prevstate', list);
+    changed = true;
+}).find('option').click(function() {
+    if (!changed){
+        $(this).parent().change();
+    }
+    changed = false;
+});
+
+const multiSelectWithoutCtrl = ( elemSelector ) => {
+    let options = [].slice.call(document.querySelectorAll(`${elemSelector} option`));
+    options.forEach(function (element) {
+        element.addEventListener("mousedown",
+            function (e) {
+                e.preventDefault();
+                element.parentElement.focus();
+                this.selected = !this.selected;
+                return false;
+            }, false );
+    });
+}
+
+multiSelectWithoutCtrl('#options-tag-form')
