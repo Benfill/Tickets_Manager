@@ -14,6 +14,7 @@ require_once("../../app/controllers/ticket_display.php");
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
     <title>Ticket Manager</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body class="p-8">
 <div>
@@ -113,5 +114,8 @@ require_once("../../app/controllers/ticket_display.php");
 
     </div>
 </main>
+
+
+<script src="../script/comments.js"></script>
 </body>
 </html>
