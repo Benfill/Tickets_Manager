@@ -85,28 +85,21 @@ require_once("../../app/controllers/ticket_display.php");
 
         <div class="w-full lg:w-1/4 m-auto mt-12 max-w-screen-sm">
             <!-- Stylish Comment Container -->
-            <div class="p-4 border-t border-b md:border md:rounded bg-gray-100 shadow-md">
+            <div class="p-2 border-t border-b md:border md:rounded bg-gray-100 shadow-md">
                 <!-- User Details and Comment Content Section -->
-                <div class="flex items-center mb-4">
-                    <img src="https://randomuser.me/api/portraits/men/97.jpg"
-                         class="h-10 w-10 rounded-full mr-2 object-cover border-2 border-yellow-500" />
-                    <div>
-                        <p class="font-semibold text-gray-700 text-sm">Mike Sullivan</p>
-                        <!-- Comment Content Section -->
-                        <p class="text-gray-700">
-                            Mike writes about technology. Yourself required no at thoughts delicate; landlord it be.
-                            Branched dashwood do is whatever it.
-                        </p>
-                    </div>
+                <div  id="comment-section" class="flex-col items-center mb-2">
+
                 </div>
                 <!-- Comment Input Section -->
-                <div class="flex">
-                    <input type="text" class="p-2 flex-1 border rounded focus:outline-none focus:border-yellow-500"
+                <form id="commentForm" class="flex" method="post" action="../../app/controllers/comment.php">
+                    <input type="text" id="comment" name="comment" class="p-2 flex-1 border rounded focus:outline-none focus:border-yellow-500"
                            placeholder="Add a comment...">
-                    <button class="ml-2 px-4 py-2 bg-yellow-500 text-gray-100 rounded hover:bg-yellow-600 transition duration-300">
+                    <input type="hidden" id="user_id" value="<?php echo $_SESSION['user_id'] ?> " name="user_id">
+                    <input type="hidden" id="ticket_id" value="<?php echo $ticketData['ticket_id'] ?>" name="ticket_id">
+                    <button name="submit" class="ml-2 px-4 py-2 bg-yellow-500 text-gray-100 rounded hover:bg-yellow-600 transition duration-300">
                         Submit
                     </button>
-                </div>
+                </form>
             </div>
         </div>
 
