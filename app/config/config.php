@@ -26,9 +26,13 @@ class Database {
         $this->conn->query($sql);
 
        $sql = "CREATE TABLE IF NOT EXISTS ticket (ticket_id INT PRIMARY KEY AUTO_INCREMENT, subject TEXT, description TEXT, status TEXT, priority text, date INT, deadline INT, is_deleted TINYINT(1) DEFAULT 0,
-            user_id INT, tag_id INT,
-            FOREIGN KEY (user_id) REFERENCES user(user_id),  
-            FOREIGN KEY (tag_id) REFERENCES tag(tag_id))";
+            user_id INT,
+            FOREIGN KEY (user_id) REFERENCES user(user_id)";
+        $this->conn->query($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS tag_ticket (ticket_id INT, tag_id INT,
+                FOREIGN KEY (ticket_id) REFERENCES ticket(ticket_id),
+                FOREIGN KEY (tag_id) REFERENCES tag(tag_id))";
         $this->conn->query($sql);
 
         $sql = "CREATE TABLE IF NOT EXISTS assignment (ticket_id INT, user_id INT,
