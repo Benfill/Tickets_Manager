@@ -9,7 +9,7 @@ class ticket {
         $ticketModel->__set("subject", $subject);
         $ticketModel->__set("creator", $creator);
         $ticketModel->__set("assignment", $assignment);
-        $ticketModel->__set("tag", $tag);
+        $ticketModel->__set("tag", $tags);
         $ticketModel->__set("priority", $priority);
         $ticketModel->__set("status", $status);
         $ticketModel->__set("description", $description);
