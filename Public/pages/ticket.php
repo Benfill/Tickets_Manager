@@ -61,16 +61,19 @@ require_once("../../app/controllers/ticket_display.php");
 <main class="mt-10 p-8">
     <div class="mb-4 md:mb-0 w-full mx-auto relative">
         <div class="px-4 lg:px-0">
-            <h2 class="text-4xl font-semibold text-gray-800 leading-tight">
+            <h2 class="text-4xl font-semibold text-gray-800 mb-4 leading-tight">
                 <?php echo $ticketData["subject"] ?>
             </h2>
-            <a
-                href="#"
-                class="py-2 text-green-700 inline-flex items-center justify-center mb-2"
-            >
-                <?php echo $ticketData["tag"] ?>
-            </a>
-            <p class="py-2 text-green-700 items-center justify-center mb-2">
+            <?php foreach ($tags as $tag) { ?>
+
+            <div class="flex inline-flex items-start mb-3">
+                <!-- Plain label -->
+                <div class="rounded-full py-1 px-4  justify-start font-medium border text-sm text-white bg-black border-black">
+                    <?php echo $tag["tag"] ?>
+                </div>
+            </div>
+            <?php }?>
+            <p class="py-2 text-green-700 items-center block justify-center mb-2">
                 by <?php echo $ticketData["username"] ?>
             </p>
         </div>
