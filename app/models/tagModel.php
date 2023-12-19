@@ -32,4 +32,16 @@ class tagModel {
         }
         return $tagData;
     }
+
+    function getArticleTags() {
+        $sql = "SELECT tag.* FROM tag_ticket
+        JOIN INNER tag ON tag_ticket.tag_id=tag.tag_id 
+        WHERE ticket_id=$this->ticket_id";
+        $res = $this->conn->query($sql);
+        $tagData = [];
+        while ($row = $res->fetch_assoc()) {
+            $tagData[] = $row;
+        }
+        return $tagData;
+    }
 }
