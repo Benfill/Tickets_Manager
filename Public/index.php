@@ -327,7 +327,8 @@ require_once "../app/controllers/tag.php";
         <?php require_once ("pages/ticket_form.php");?>
   </main>
 
-    <script src="script/main.js"></script>
+  <script src="script/main.js"></script>
+  <script src="script/getTickets.js"></script>
   <script src="../path/to/flowbite/dist/datepicker.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/datepicker.min.js"></script>
 </body>

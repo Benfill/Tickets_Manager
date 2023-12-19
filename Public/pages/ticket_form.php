@@ -89,6 +89,19 @@
                                           <input type="radio" id="todo" name="priority" value="High Priority" class="form-radio text-blue-500">
                                           <label for="todo" class="ml-2 text-gray-700">High Priority</label>
                                       </div>
+                                      <!doctype html>
+                                      <html lang="en">
+                                      <head>
+                                          <meta charset="UTF-8">
+                                          <meta name="viewport"
+                                                content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+                                          <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                                          <title>Document</title>
+                                      </head>
+                                      <body>
+
+                                      </body>
+                                      </html>
                                       <div>
                                           <input type="radio" id="todo" name="priority" value="Urgent" class="form-radio text-blue-500">
                                           <label for="todo" class="ml-2 text-gray-700">Urgent</label>
@@ -159,4 +172,4 @@
                   </div>
               </div>
           </div>
-      </section>;
+      </section>

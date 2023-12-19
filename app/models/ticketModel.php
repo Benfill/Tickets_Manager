@@ -31,9 +31,7 @@ class ticketModel
         mysqli_stmt_prepare($stmt, $sql);
         mysqli_stmt_bind_param($stmt, "issssii", $this->creator, $this->subject, $this->priority, $this->status, $this->description, $this->deadline, $this->date);
         mysqli_stmt_execute($stmt);
-        $ticket_id = mysqli_insert_id($conn);
-        echo $stmt->error;
-        return $ticket_id;
+        return mysqli_insert_id($conn);
     }
     function insertAssignment($conn, $ticket_id, $user_id) {
         $sql = "INSERT INTO assignment (ticket_id, user_id) VALUES ($ticket_id, $user_id)";
@@ -55,6 +53,20 @@ class ticketModel
         $res = mysqli_stmt_get_result($stmt);
         echo $stmt->error;
         return mysqli_fetch_assoc($res);
+    }
+
+    function displayAllTickets($conn) {
+        $sql = "SELECT * FROM ticket";
+        $stmt = mysqli_stmt_init($conn);
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_execute($stmt);
+        $res = mysqli_stmt_get_result($stmt);
+
+        $tickets = [];
+        while ($row = mysqli_fetch_assoc($res)) {
+            $tickets[] = $row;
+        }
+        return $tickets;
     }
 
 

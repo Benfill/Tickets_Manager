@@ -41,11 +41,11 @@ class Database {
         $this->conn->query($sql);
 
         $sql = "INSERT INTO tag (tag) VALUES 
-    ('SoftwareIssue'), 
-    ('HardwareProblem'), 
-    ('NetworkTrouble'), 
-    ('SecurityConcern'), 
-    ('AccountAccess')
+    ('Software Issue'), 
+    ('Hardware Problem'), 
+    ('Network Trouble'), 
+    ('Security Concern'), 
+    ('Account Access')
     ON DUPLICATE KEY UPDATE tag = VALUES(tag)";
         $this->conn->query($sql);
     }
