@@ -66,7 +66,7 @@ require_once "../app/controllers/tag.php";
         </a>
           <span class="font-bold text-sm ml-2">Logout</span>
           </div>
-          <img src="img/1002-1696615923.jpg" class="inline-flex h-10 w-10 rounded-full mr-2 object-cover border-2 border-yellow-500" />
+          <img src="<?= substr($userData['picture'],13); ?>" class="inline-flex h-10 w-10 rounded-full mr-2 object-cover border-2 border-yellow-500" />
       </div>
     </div>
   </aside>
