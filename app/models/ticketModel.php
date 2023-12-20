@@ -1,4 +1,5 @@
 <?php
+
 class ticketModel
 {
     private $ticket_id;
@@ -33,7 +34,9 @@ class ticketModel
         mysqli_stmt_execute($stmt);
         return mysqli_insert_id($conn);
     }
-    function insertAssignment($conn, $ticket_id, $user_id) {
+
+    function insertAssignment($conn, $ticket_id, $user_id)
+    {
         $sql = "INSERT INTO assignment (ticket_id, user_id) VALUES ($ticket_id, $user_id)";
         $stmt = mysqli_stmt_init($conn);
         mysqli_stmt_prepare($stmt, $sql);
@@ -55,10 +58,11 @@ class ticketModel
         return mysqli_fetch_assoc($res);
     }
 
-    function displayAllTickets($conn) {
+    function displayAllTickets($conn)
+    {
         $sql = "SELECT tickets.*, users.* 
         FROM ticket AS tickets
-        INNER JOIN user AS users ON tickets.user_id = users.user_id";
+        INNER JOIN user AS users ON tickets.user_id = users.user_id ORDER BY tickets.ticket_id DESC ";
 
         $stmt = mysqli_stmt_init($conn);
         mysqli_stmt_prepare($stmt, $sql);
