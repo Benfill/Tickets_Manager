@@ -26,6 +26,7 @@ $ticketsData[] = [
     "priority" => $oneTicket["priority"],
     "tags" => $ticketTag,
     "assign" => $ticketAssign,
+    "creator_id" => $oneTicket["user_id"],
     "creator" => $oneTicket["username"],
     "picture" => $oneTicket["picture"],
 ];

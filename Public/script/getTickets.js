@@ -9,9 +9,14 @@ function truncateString(string, limit) {
     }
 }
 
+let filterBy = "all";
+let id = "2";
+
 function callAjax() {
     $.ajax({
-        type: "POST", url: "../app/controllers/get_all_ticket.php", success: function (data) {
+        type: "POST",
+        url: "../app/controllers/get_all_ticket.php",
+        success: function (data) {
             ticketData = JSON.parse(data);
             console.log(ticketData);
             listContainer.innerHTML = "";
@@ -27,8 +32,23 @@ function callAjax() {
                     let picture = ticketData[i].assign[x].picture.substr(13);
                     assign += `<img alt="Assigned Agent" src="${picture}" class="relative inline-block h-12 w-12 rounded-full border-2 border-white object-cover object-center hover:z-10 focus:z-10" />`;
                 }
+
                 let description = truncateString(ticketData[i].description, 19);
-                listContainer.innerHTML += `<tr>
+                let checker = false;
+
+                if (filterBy === "all") checker = true;
+                else if (filterBy === "creator") {
+                    if (ticketData[i].creator_id == id) checker = true;
+                } else {
+                    for (let x = 0; x < ticketData[i].assign.length; x++) {
+                        console.log(ticketData[i].assign[x].user_id);
+                        if (ticketData[i].assign[x].user_id == id) checker = true;
+                    }
+                }
+
+
+                if (checker === true) {
+                    listContainer.innerHTML += `<tr>
                       <td class='p-4 border-b border-blue-gray-50'>
                       <div class='flex items-center gap-3'>
                           <div class='flex flex-col'>
@@ -82,6 +102,8 @@ function callAjax() {
                       </button>
                   </td>
               </tr>`;
+                }
+
             }
         },
 
@@ -92,6 +114,16 @@ function callAjax() {
     });
 }
 
-callAjax();
 
-setInterval(callAjax, 6000);
+setInterval(filter(filterBy, id), 6000);
+
+function filter(filter, user_id) {
+
+    if (filter === "assign") filterBy = "assign";
+    else if (filter === "creator") filterBy = "creator";
+    else filterBy = "all";
+    if (!isNaN(user_id))
+        id = user_id;
+    callAjax(id);
+}
+

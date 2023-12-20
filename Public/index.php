@@ -189,6 +189,14 @@ require_once "../app/controllers/tag.php";
 
               <!-- sort section -->
               <div class="flex">
+
+                  <!-- See all tickets button -->
+                  <div class="relative z-10 flex-none p-2 justify-center">
+                      <button onclick="filter('all')" class="flex flex-row justify-center  w-48 px-2 py-2 text-gray-700 bg-white border-2 border-white rounded-md shadow focus:outline-none focus:border-blue-600">
+                          <span class="select-none">See all tickets</span>
+                      </button>
+                  </div>
+
                   <!-- Sort by creator -->
                   <div class="relative z-10 flex-none p-2 justify-right">
                       <button onclick="showDropdownOptions('options-creator', 'arrow-up-creator', 'arrow-down-creator')" class="flex flex-row justify-between w-48 px-2 py-2 text-gray-700 bg-white border-2 border-white rounded-md shadow focus:outline-none focus:border-blue-600">
@@ -200,7 +208,7 @@ require_once "../app/controllers/tag.php";
                       <select name="creator" id="options-creator" class="hidden absolute w-48 py-2 mt-2 bg-white rounded-lg shadow-xl" multiple="">
                           <?php foreach ($usersData as $user) {
                               ?>
-                              <option value="<?php echo $user['user_id'] ?>" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><?php echo $user['username'] ?></option>
+                              <option onclick="filter('creator', <?=$user['user_id'] ?> )" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><?php echo $user['username'] ?></option>
                           <?php } ?>
                       </select>
                   </div>
@@ -212,10 +220,10 @@ require_once "../app/controllers/tag.php";
                           <svg id="arrow-down-assignment" class="hidden w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
                           <svg id="arrow-up-assignment" class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" /></svg>
                       </button>
-                      <select name="assignment" id="options-assignment" class="hidden absolute w-48 py-2 mt-2 bg-white rounded-lg shadow-xl" multiple>
+                      <select name="creator" id="options-assignment" class="hidden absolute w-48 py-2 mt-2 bg-white rounded-lg shadow-xl" multiple="">
                           <?php foreach ($usersData as $user) {
-                          ?>
-                          <option value="<?php echo $user['user_id'] ?>" id="assignOp" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><?php echo $user['username'] ?></option>
+                              ?>
+                              <option onclick="filter('assign', <?=$user['user_id'] ?> )" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><?php echo $user['username'] ?></option>
                           <?php } ?>
                       </select>
                   </div>
