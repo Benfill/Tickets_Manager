@@ -34,6 +34,13 @@ class ticket {
         return $ticketModel->displayOneTicket($conn);
     }
 
+    function displayAllTickets($conn) {
+        require_once "../../app/models/ticketModel.php";
+        $ticketModel = new ticketModel();
+
+        return $ticketModel->displayAllTickets($conn);
+    }
+
     function displayComments($conn, $ticket_id) {
         require_once "../../app/models/ticketModel.php";
         $ticketModel = new ticketModel();
