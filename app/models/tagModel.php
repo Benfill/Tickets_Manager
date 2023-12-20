@@ -22,6 +22,13 @@ class tagModel {
         mysqli_stmt_execute($stmt);
     }
 
+    function updateTag($conn, $ticket_id, $tag_id) {
+        $sql = "UPDATE tag_ticket SET ticket_id='$ticket_id', tag_id='$tag_id'";
+        $stmt = mysqli_stmt_init($conn);
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_execute($stmt);
+    }
+
     function getAllTags()
     {
         $sql = "SELECT * FROM tag";

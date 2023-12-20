@@ -1,8 +1,7 @@
 <?php
 require_once "../config/config.php";
 require_once "../libraries/ticket.php";
-
-if (isset($_POST["save"])) {
+if (isset($_POST["update"])) {
     header("Content-Type: text/plain");
 
     $subject = filter_input(INPUT_POST, "subject", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -13,13 +12,21 @@ if (isset($_POST["save"])) {
     $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_SPECIAL_CHARS);
     $date = date("U");
     $creator = $_SESSION["user_id"];
+    $ticket_id = $_GET['ticket_id'];
 
 
     $deadline = filter_input(INPUT_POST, "deadline", FILTER_SANITIZE_NUMBER_INT);
     $deadlineObject = DateTime::createFromFormat('dmY', $deadline);
     $deadline = $deadlineObject->getTimestamp();
     $ticket = new ticket;
-    $ticket_id = $ticket->createTicket($creator, $subject, $deadline, $assignment, $tag, $priority, $status, $description, $date, $conn);
+    $ticket_id = $ticket->updateTicket($ticket_id, $creator, $subject, $deadline, $assignment, $tag, $priority, $status, $description, $date, $conn);
 
     header("Location: " . $url . "public/pages/ticket.php?ticket_id=". $ticket_id);
+} if (isset($_GET["ticket_id"])) {
+    $ticket_id = $_GET['ticket_id'];
+    $sql = "UPDATE ticket SET is_deleted=1 WHERE ticket_id='$ticket_id'";
+    $stmt = mysqli_stmt_init($conn);
+    mysqli_stmt_prepare($stmt, $sql);
+    mysqli_stmt_execute($stmt);
+    header("Location: " . $url . "public/");
 } else header("Location: " . $url . "public/");

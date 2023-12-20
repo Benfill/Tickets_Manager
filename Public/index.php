@@ -20,7 +20,7 @@ require_once "../app/controllers/tag.php";
   <header class="fixed right-0 top-0 left-60 bg-yellow-50 py-3 px-4 h-16">
       <div class="max-w-4xl mx-auto">
       <div class="flex items-center justify-center">
-        <div class="text-lg font-bold">Welecome <?php echo $userData["username"]; ?></div>
+        <div class="text-lg font-bold">Welecome <?= $userData["username"]; ?></div>
       </div>
     </div>
   </header>
@@ -111,7 +111,7 @@ require_once "../app/controllers/tag.php";
               <div class="grid grid-cols-2 gap-4">
                 <div class="col-span-2">
                   <div class="p-4 bg-green-100 rounded-xl">
-                    <div class="font-bold text-xl text-gray-800 leading-none">Good day, <br>Kristin</div>
+                    <div class="font-bold text-xl text-gray-800 leading-none">Good day, <br><?= ($userData["username"]); ?></div>
                     <div class="mt-5">
                       <button type="button" class="inline-flex items-center justify-center py-2 px-3 rounded-xl bg-white text-gray-800 hover:text-green-500 text-sm font-semibold transition">
                         Start tracking

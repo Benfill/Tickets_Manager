@@ -26,6 +26,26 @@ class ticket {
         return $ticket_id;
     }
 
+    function updateTicket ($ticket_id, $creator, $subject, $deadline, $assignment, $tags, $priority, $status, $description, $date, $conn) {
+        require_once "../models/ticketModel.php";
+        require_once "../models/tagModel.php";
+        $ticketModel = new ticketModel();
+        $tagModel = new tagModel();
+
+        $ticketModel->__set("subject", $subject);
+        $ticketModel->__set("creator", $creator);
+        $ticketModel->__set("assignment", $assignment);
+        $ticketModel->__set("tag", $tags);
+        $ticketModel->__set("priority", $priority);
+        $ticketModel->__set("status", $status);
+        $ticketModel->__set("description", $description);
+        $ticketModel->__set("deadline", $deadline);
+        $ticketModel->__set("date", $date);
+
+        $ticket_id = $ticketModel->updateTicket($conn, $ticket_id);
+        return $ticket_id;
+    }
+
     function displayTicket($conn, $ticket_id) {
         require_once "../../app/models/ticketModel.php";
         $ticketModel = new ticketModel();

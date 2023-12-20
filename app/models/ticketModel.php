@@ -35,6 +35,24 @@ class ticketModel
         return mysqli_insert_id($conn);
     }
 
+    function updateTicket($conn, $ticket_id)
+    {
+        $sql = "UPDATE ticket SET user_id=?, subject=?, priority=?, status=?, description=?, deadline=?, date=? WHERE ticket_id=?";
+        $stmt = mysqli_stmt_init($conn);
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_bind_param($stmt, "issssiii", $this->creator, $this->subject, $this->priority, $this->status, $this->description, $this->deadline, $this->date, $ticket_id);
+        mysqli_stmt_execute($stmt);
+        return mysqli_insert_id($conn);
+    }
+
+function updateAssignment($conn, $ticket_id, $assignedTo) {
+    $sql = "UPDATE assignment SET ticket_id='$ticket_id', user_id='$assignedTo'";
+    $stmt = mysqli_stmt_init($conn);
+    mysqli_stmt_prepare($stmt, $sql);
+    mysqli_stmt_execute($stmt);
+    echo $stmt->error;
+}
+
     function insertAssignment($conn, $ticket_id, $user_id)
     {
         $sql = "INSERT INTO assignment (ticket_id, user_id) VALUES ($ticket_id, $user_id)";
@@ -62,7 +80,7 @@ class ticketModel
     {
         $sql = "SELECT tickets.*, users.* 
         FROM ticket AS tickets
-        INNER JOIN user AS users ON tickets.user_id = users.user_id ORDER BY tickets.ticket_id DESC ";
+        INNER JOIN user AS users ON tickets.user_id = users.user_id WHERE tickets.is_deleted=0 ORDER BY tickets.ticket_id DESC";
 
         $stmt = mysqli_stmt_init($conn);
         mysqli_stmt_prepare($stmt, $sql);
