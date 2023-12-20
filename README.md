@@ -68,6 +68,21 @@ To set up the Helpdesk Ticketing System, follow these steps:
 3. Ensure that your server supports PHP and has the necessary extensions.
 4. Access the system through the `index.php` file.
 
+## Additional Resources
+
+- **Project Repository:**
+  [Benfillous-Anass_tickets_manager](https://github.com/Youcode-Classe-E-2023-2024/Benfillous-Anass_tickets_manager)
+
+- **Database Schema Diagram:**
+  ![MCD Diagram](https://github.com/Youcode-Classe-E-2023-2024/Benfillous-Anass_tickets_manager/blob/main/diagrams/MCD.png)
+
+- **UML Diagram:**
+  ![UML Diagram](https://github.com/Youcode-Classe-E-2023-2024/Benfillous-Anass_tickets_manager/blob/main/diagrams/UML.jpg)
+
+- **SQL Database Script:**
+  [ticket.sql](https://github.com/Youcode-Classe-E-2023-2024/Benfillous-Anass_tickets_manager/blob/main/ticket.sql)
+
+
 ## Contributors
 
 - Benfillous Anass
