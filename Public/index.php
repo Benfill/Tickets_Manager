@@ -12,7 +12,7 @@ require_once "../app/controllers/tag.php";
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -215,7 +215,7 @@ require_once "../app/controllers/tag.php";
                       <select name="assignment" id="options-assignment" class="hidden absolute w-48 py-2 mt-2 bg-white rounded-lg shadow-xl" multiple>
                           <?php foreach ($usersData as $user) {
                           ?>
-                          <option value="<?php echo $user['user_id'] ?>" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><?php echo $user['username'] ?></option>
+                          <option value="<?php echo $user['user_id'] ?>" id="assignOp" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><?php echo $user['username'] ?></option>
                           <?php } ?>
                       </select>
                   </div>
@@ -227,6 +227,12 @@ require_once "../app/controllers/tag.php";
               <tr>
                   <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
                       <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Project <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="h-4 w-4">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"></path>
+                          </svg>
+                      </p>
+                  </th>
+                  <th class="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+                      <p class="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-normal leading-none opacity-70">Creator<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="h-4 w-4">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"></path>
                           </svg>
                       </p>
@@ -266,56 +272,7 @@ require_once "../app/controllers/tag.php";
                   </th>
               </tr>
               </thead>
-              <tbody>
-              <tr>
-                  <td class="p-4 border-b border-blue-gray-50">
-                      <div class="flex items-center gap-3">
-                          <div class="flex flex-col">
-                              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">React Project</p>
-                              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal opacity-70">Start date: 10 Dec 2023</p>
-                          </div>
-                      </div>
-                  </td>
-                  <td class="p-4 border-b border-blue-gray-50">
-                      <div class="flex items-center gap-3">
-                          <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg" alt="John Michael" class="inline-block relative object-cover object-center !rounded-full w-9 h-9 rounded-md">
-                          <div class="flex flex-col">
-                              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">John Michael</p>
-                              <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal opacity-70">john@creative-tim.com</p>
-                          </div>
-                      </div>
-                  </td>
-                  <td class="p-4 border-b border-blue-gray-50">
-                      <div class="flex flex-col">
-                          <h2 class="block antialiased font-sans text-sm leading-normal text-red-900 font-bold">Urgent</h2>
-                      </div>
-                  </td>
-                  <td class="p-4 border-b border-blue-gray-50">
-                      <div class="flex flex-col">
-                          <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">Manager</p>
-                          <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal opacity-70">Organization</p>
-                      </div>
-                  </td>
-                  <td class="p-4 border-b border-blue-gray-50">
-                      <div class="w-max">
-                          <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-green-500/20 text-green-600 py-1 px-2 text-xs rounded-md" style="opacity: 1;">
-                              <span class="">Completed</span>
-                          </div>
-                      </div>
-                  </td>
-                  <td class="p-4 border-b border-blue-gray-50">
-                      <p class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">23/04/18</p>
-                  </td>
-                  <td class="p-4 border-b border-blue-gray-50">
-                      <button class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button">
-            <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="h-4 w-4">
-                <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"></path>
-              </svg>
-            </span>
-                      </button>
-                  </td>
-              </tr>
+              <tbody id="ticket_list_container">
               </tbody>
           </table>
       </div>
