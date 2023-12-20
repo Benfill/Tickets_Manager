@@ -14,9 +14,20 @@ $tickets = $ticket->displayAllTickets($conn);
 $tags = $tag->GetSpecificTags($conn, 17, $tagModel);
 $assignment = $assign->getAssignment($conn, 17);
 
-$ticketsData = [
 
+foreach ($tickets as $oneTicket) {
+    $ticketTag = $tag->GetSpecificTags($conn, $oneTicket["ticket_id"], $tagModel);
+    $ticketAssign = $assign->getAssignment($conn, $oneTicket["ticket_id"]);
 
+$ticketsData[] = [
+    "subject" => $oneTicket["subject"],
+    "description" => $oneTicket["description"],
+    "status" => $oneTicket["status"],
+    "priority" => $oneTicket["priority"],
+    "tags" => $ticketTag,
+    "assign" => $ticketAssign,
+    "creator" => $oneTicket["username"],
+    "picture" => $oneTicket["picture"],
 ];
-print_r($assignment);
-print_r($tags);
+}
+echo json_encode($ticketsData);
