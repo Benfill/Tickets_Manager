@@ -1,7 +1,7 @@
 # Helpdesk Ticketing System
 
 ## Overview
-![Ticket-Manager](https://github.com/Youcode-Classe-E-2023-2024/Benfillous-Anass_tickets_manager/assets/109225791/cf059366-d486-469d-a19d-98c8f02c9377)
+![Ticket-Manager (1)](https://github.com/Youcode-Classe-E-2023-2024/Benfillous-Anass_tickets_manager/assets/109225791/7a9fe825-2e9a-449c-bd24-6f9f4b551cd1)
 
 This project involves the creation of a Helpdesk Ticketing System using native PHP with an object-oriented programming (OOP) approach. The system is designed to facilitate internal communication among developers at Avito by providing a centralized platform for managing development needs, bug reports, and other related tasks.
 
