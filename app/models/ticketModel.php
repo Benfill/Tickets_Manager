@@ -56,7 +56,10 @@ class ticketModel
     }
 
     function displayAllTickets($conn) {
-        $sql = "SELECT * FROM ticket";
+        $sql = "SELECT tickets.*, users.* 
+        FROM ticket AS tickets
+        INNER JOIN user AS users ON tickets.user_id = users.user_id";
+
         $stmt = mysqli_stmt_init($conn);
         mysqli_stmt_prepare($stmt, $sql);
         mysqli_stmt_execute($stmt);
