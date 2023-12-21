@@ -50,7 +50,9 @@ function callAjax() {
 
 
                 if (checker === true) {
-                    listContainer.innerHTML += `<tr>
+                    listContainer.innerHTML += `
+                        <tr>
+                        <a href="pages/ticket.php?ticket_id=${ticketData[i].ticket_id}" alt="${ticketData[i].subject} ticket">
                       <td class='p-4 border-b border-blue-gray-50'>
                       <div class='flex items-center gap-3'>
                           <div class='flex flex-col'>
@@ -68,6 +70,7 @@ function callAjax() {
                           </div>
                       </div>
                   </td>
+                  </a>
                   <td class='p-4 border-b border-blue-gray-50'>
                       <div class='flex items-center gap-3'>
                           ${assign}
