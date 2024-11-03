@@ -15,7 +15,7 @@ This project is part of the [2023] Web and Mobile Web Developer course, focusing
 
 ## Project Context
 
-Avito has initiated the development of a ticket management system to streamline internal workflows among developers. The system aims to enable developers to quickly understand and address the company's development needs, bug fixes, and other related tasks.
+Company has initiated the development of a ticket management system to streamline internal workflows among developers. The system aims to enable developers to quickly understand and address the company's development needs, bug fixes, and other related tasks.
 
 ## Key Features
 
